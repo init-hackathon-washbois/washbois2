@@ -3,9 +3,9 @@ package washbro.android.com.washbros;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
 
@@ -29,6 +29,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -51,6 +68,7 @@ public class SignUpActivity extends AppCompatActivity{
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
 
+
         mPasswordView = (EditText) findViewById(R.id.password);
 
 
@@ -58,6 +76,16 @@ public class SignUpActivity extends AppCompatActivity{
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+        if(mAuth.getCurrentUser() != null) {
+            //keeps the user logged in
+            Intent intent = new Intent(this, Room.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        }
+        btnSignUp.setOnClickListener(this);
+        btnSignIn.setOnClickListener(this);
+
 
     }
 }
