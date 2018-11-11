@@ -7,12 +7,16 @@ import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button btnToRoom, btnToCreate;
     private EditText editTextRoomId;
     private FirebaseAuth mAuth;
+    DatabaseReference mJobs;
+    DatabaseReference mUsers;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         btnToRoom = findViewById(R.id.btnGoToRoom);
         btnToCreate = findViewById(R.id.btnGoToCreate);
         editTextRoomId = findViewById(R.id.editTextRoomId);
+        
+
 
 
 
@@ -30,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
 
     }
 }
